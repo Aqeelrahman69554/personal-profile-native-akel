@@ -76,6 +76,16 @@ $fitur = $_GET['fitur'] ?? 'dashboard';
           include "pages/stats_skills/delete.php";
           break;
 
+           case 'portofolio':
+          include "pages/portofolio/index.php";
+          break;
+        case 'portofolio-update':
+          include "pages/portofolio/edit.php";
+          break;
+        case 'portofolio-delete':
+          include "pages/portofolio/delete.php";
+          break;
+
         // default
         default:
           $path = "pages/$fitur/index.php";

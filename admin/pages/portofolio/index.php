@@ -1,7 +1,40 @@
-<?php 
+<?php
 include "../connection.php";
-$ambil = $conn->query("SELECT * FROM portofolio");
+
+//RUMUS CREATE
+if (isset($_POST['create'])) {
+    $id    = $_POST['id'];
+    $title = $_POST['title'];
+    $desctitle = $_POST['desctitle'];
+    $tagline = $_POST['tagline'];
+    $image = $_POST['image'];
+    $titleimg = $_POST['title_image'];
+    $titledesc = $_POST['title_description'];
+    $category = $_POST['category'];
+    $client = $_POST['client'];
+    $date = $_POST['date'];
+    $url = $_POST['url'];
+    $subdetail = $_POST['sub_detail'];
+    $descdetail = $_POST['desc_detail'];
+
+    $query = "INSERT INTO portofolio (title,desctitle,tagline,image,title_image,title_description,category,client,date,url,sub_detail,desc_detail) VALUES ('$title', '$desctitle','$tagline','$image', '$titleimg','$titledesc','$category','$category','$client','$date','$url','$subdetail','$descdetail')";
+
+    if (mysqli_query($conn, $query)) {
+        echo "<script>
+            alert('Data berhasil ditambahin!');
+            window.location.href='index.php?fitur=portofolio';
+            </script>";
+        exit;
+    } else {
+        echo "Gagal menambah data!";
+    }
+}
+
+//RUMUS READ ONLY
+$data = mysqli_query($conn, "SELECT * FROM portofolio ORDER BY id ASC");
 ?>
+
+
 
 <div class="container">
     <div class="page-inner">
@@ -19,7 +52,7 @@ $ambil = $conn->query("SELECT * FROM portofolio");
                 <li class="nav-item">
                     <a href="#">Tables</a>
                 </li>
-                
+
             </ul>
         </div>
         <div class="row">
@@ -65,55 +98,48 @@ $ambil = $conn->query("SELECT * FROM portofolio");
                                             Create a new row using this form, make sure you
                                             fill them all
                                         </p>
-                                        <form>
+                                        <form method="POST">
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="form-group form-group-default">
-                                                        <label>Name</label>
+                                                        <label>List</label>
                                                         <input
-                                                            id="addName"
                                                             type="text"
+                                                            name="list"
                                                             class="form-control"
-                                                            placeholder="fill name" />
+                                                            placeholder="fill name"
+                                                            required />
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6 pe-0">
+
                                                     <div class="form-group form-group-default">
-                                                        <label>Position</label>
+                                                        <label>sublist</label>
                                                         <input
-                                                            id="addPosition"
+                                                            id="sublist"
                                                             type="text"
+                                                            name="sublist"
                                                             class="form-control"
-                                                            placeholder="fill position" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group form-group-default">
-                                                        <label>Office</label>
-                                                        <input
-                                                            id="addOffice"
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder="fill office" />
+                                                            placeholder="fill sublist"
+                                                            required />
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="modal-footer border-0">
+                                                <button
+                                                    type="submit"
+                                                    name="create"
+                                                    class="btn btn-primary">
+                                                    Add
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-danger"
+                                                    data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                            </div>
                                         </form>
                                     </div>
-                                    <div class="modal-footer border-0">
-                                        <button
-                                            type="button"
-                                            id="addRowButton"
-                                            class="btn btn-primary">
-                                            Add
-                                        </button>
-                                        <button
-                                            type="button"
-                                            class="btn btn-danger"
-                                            data-dismiss="modal">
-                                            Close
-                                        </button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -125,46 +151,56 @@ $ambil = $conn->query("SELECT * FROM portofolio");
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Title</th>
-                                        <th>Job</th>
-                                        <th>Image</th>
+                                        <td>Title</td>
+                                        <td>Description Title</td>
+                                        <td>Tagline</td>
+                                        <td>Image</td>
+                                        <td>Title Image</td>
+                                        <td>Title Description</td>
+                                        <td>category</td>
+                                        <td>client</td>
+                                        <td>Date</td>
+                                        <td>Url</td>
+                                        <td>Sub Detail</td>
+                                        <td>Description Detail</td>
                                         <th style="width: 10%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php 
-                                    
+                                    <?php
+
                                     $no = 1;
-                                    $data = mysqli_query($conn, "SELECT * FROM home");
-                                    while($row= mysqli_fetch_assoc($data)) {
+                                    $data = mysqli_query($conn, "SELECT * FROM portofolio");
+                                    while ($row = mysqli_fetch_assoc($data)) {
 
                                     ?>
-                                    <tr>
-                                        <td><?= $no++ ?></td>
-                                        <td><?= $row['title'] ?></td>
-                                        <td><?= $row['job'] ?></td>
-                                        <td><?= $row['image'] ?></td>
-                                        <td>
-                                            <div class="form-button-action">
-                                                <button
-                                                    type="button"
-                                                    data-bs-toggle="tooltip"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    data-original-title="Edit Task">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    data-bs-toggle="tooltip"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    data-original-title="Remove">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td><?= $no++ ?></td>
+
+                                            <td><?= $row['title'] ?></td>
+                                            <td><?= $row['desctitle'] ?></td>
+                                            <td><?= $row['tagline'] ?></td>
+                                            <td>
+                                                <?php if (!empty($row['image'])) : ?>
+                                                    <img src="/personal-profile-native-akel/public/sertifikat/<?= $row['image'] ?>"
+                                                        width="60" class="rounded">
+                                                <?php endif; ?>
+                                            </td>
+                                            <td><?= $row['title_image'] ?></td>
+                                            <td><?= $row['title_description'] ?></td>
+                                            <td><?= $row['category'] ?></td>
+                                            <td><?= $row['client'] ?></td>
+                                            <td><?= $row['date'] ?></td>
+                                            <td><?= $row['url'] ?></td>
+                                            <td><?= $row['sub_detail'] ?></td>
+                                            <td><?= $row['desc_detail'] ?></td>
+                                            <td>
+                                                <div class="form-button-action">
+                                                    <a href="index.php?fitur=portofolio-update&id=<?= $row['id'] ?>" class="btn btn-link btn-primary btn-lg"><i class="fa fa-edit"></i></a>
+                                                    <a href="index.php?fitur=portofolio-delete=<?= $row['id'] ?>" class="btn btn-link btn-danger"><i class="fa fa-times"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     <?php } ?>
                                 </tbody>
                             </table>
