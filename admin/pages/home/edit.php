@@ -22,7 +22,7 @@ if (isset($_POST['update'])) {
         echo "<script>
             alert('Data berhasil diupdate!');
             window.location.href='index.php?fitur=home';
-          </script>";
+        </script>";
         exit;
     } else {
         echo "Gagal update data!";

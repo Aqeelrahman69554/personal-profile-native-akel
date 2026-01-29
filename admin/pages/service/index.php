@@ -1,6 +1,33 @@
-<?php 
+<?php
 include "../connection.php";
-$ambil = $conn->query("SELECT * FROM home");
+
+if (isset($_POST['create'])) {
+    $id    = $_POST['id'];
+    $title1 = $_POST['title-1'];
+    $desctitle1 = $_POST['desctitle-1'];
+    $icon = $_POST['icon'];
+    $subtitle1 = $_POST['subtitle-1'];
+    $descsubtitle1 = $_POST['descsubtitle-1'];
+    $title2 = $_POST['title-2'];
+    $desctitle2 = $_POST['desctitle-2'];
+    $coment = $_POST['coment'];
+    $imgcoment = $_POST['image-coment'];
+    $name = $_POST['name'];
+    $status  = $_POST['status'];
+
+    $query = "INSERT INTO services (`title-1`,`desctitle-1`,icon,`subtitle-1`,`descsubtitle-1`,`title-2`,`desctitle-2`,`coment`,`image-coment`,name,status) VALUES ('$title1','$desctitle1','$icon','$subtitle1','$descsubtitle1','$title2','$desctitle2','$coment','$imgcoment','$status','$status')";
+
+    if (mysqli_query($conn, $query)) {
+        echo "<script>
+            alert('Data berhasil ditambahin!');
+            window.location.href='index.php?fitur=service';
+            </script>";
+        exit;
+    } else {
+        echo "Gagal menambah data!";
+    }
+}
+$ambil = $conn->query("SELECT * FROM services");
 ?>
 
 <div class="container">
@@ -19,7 +46,7 @@ $ambil = $conn->query("SELECT * FROM home");
                 <li class="nav-item">
                     <a href="#">Tables</a>
                 </li>
-                
+
             </ul>
         </div>
         <div class="row">
@@ -125,46 +152,53 @@ $ambil = $conn->query("SELECT * FROM home");
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Title</th>
-                                        <th>Job</th>
-                                        <th>Image</th>
+                                        <th>Title-1</th>
+                                        <th>Description Title-1</th>
+                                        <th>Icon</th>
+                                        <th>Subtitle-1</th>
+                                        <th>Description Subtitle-1</th>
+                                        <th>Title-2</th>
+                                        <th>Description Title-2</th>
+                                        <th>Coment</th>
+                                        <th>Image Coment</th>
+                                        <th>Name</th>
+                                        <th>Status</th>
                                         <th style="width: 10%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php 
-                                    
+                                    <?php
+
                                     $no = 1;
-                                    $data = mysqli_query($conn, "SELECT * FROM home");
-                                    while($row= mysqli_fetch_assoc($data)) {
+                                    $data = mysqli_query($conn, "SELECT * FROM services");
+                                    while ($row = mysqli_fetch_assoc($data)) {
 
                                     ?>
-                                    <tr>
-                                        <td><?= $no++ ?></td>
-                                        <td><?= $row['title'] ?></td>
-                                        <td><?= $row['job'] ?></td>
-                                        <td><?= $row['image'] ?></td>
-                                        <td>
-                                            <div class="form-button-action">
-                                                <button
-                                                    type="button"
-                                                    data-bs-toggle="tooltip"
-                                                    title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    data-original-title="Edit Task">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    data-bs-toggle="tooltip"
-                                                    title=""
-                                                    class="btn btn-link btn-danger"
-                                                    data-original-title="Remove">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td><?= $no++ ?></td>
+                                            <td><?= $row['title-1'] ?></td>
+                                            <td><?= $row['desctitle-1'] ?></td>
+                                            <td><?= $row['icon'] ?></td>
+                                            <td><?= $row['subtitle-1'] ?></td>
+                                            <td><?= $row['descsubtitle-1'] ?></td>
+                                            <td><?= $row['title-2'] ?></td>
+                                            <td><?= $row['desctitle-2'] ?></td>
+                                            <td><?= $row['coment'] ?></td>
+                                            <td>
+                                                <?php if (!empty($row['image-coment'])) : ?>
+                                                    <img src="/personal-profile-native-akel/public/servi/<?= $row['image-coment'] ?>"
+                                                        width="60" class="rounded">
+                                                <?php endif; ?>
+                                            </td>
+                                            <td><?= $row['name'] ?></td>
+                                            <td><?= $row['status'] ?></td>
+                                            <td>
+                                                <div class="form-button-action">
+                                                    <a href="index.php?fitur=service-update&id=<?= $row['id'] ?>" class="btn btn-link btn-primary btn-lg"><i class="fa fa-edit"></i></a>
+                                                    <a href="index.php?fitur=service-delete=<?= $row['id'] ?>" class="btn btn-link btn-danger"><i class="fa fa-times"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     <?php } ?>
                                 </tbody>
                             </table>

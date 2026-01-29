@@ -76,7 +76,8 @@ $fitur = $_GET['fitur'] ?? 'dashboard';
           include "pages/stats_skills/delete.php";
           break;
 
-           case 'portofolio':
+        // portofolio
+        case 'portofolio':
           include "pages/portofolio/index.php";
           break;
         case 'portofolio-update':
@@ -84,6 +85,27 @@ $fitur = $_GET['fitur'] ?? 'dashboard';
           break;
         case 'portofolio-delete':
           include "pages/portofolio/delete.php";
+          break;
+
+        // services
+        case 'service':
+          include "pages/service/index.php";
+          break;
+        case 'service-update':
+          include "pages/service/edit.php";
+          break;
+        case 'service-delete':
+          include "pages/service/delete.php";
+          break;
+        // contact
+        case 'contact':
+          include "pages/contact/index.php";
+          break;
+        case 'contact-update':
+          include "pages/contact/edit.php";
+          break;
+        case 'contact-delete':
+          include "pages/contact/delete.php";
           break;
 
         // default

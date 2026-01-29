@@ -81,7 +81,7 @@ while ($row = mysqli_fetch_assoc($qserviceItems)) {
                                 <span><?= $items['coment'] ?></span>
                                 <i class="bi bi-quote quote-icon-right"></i>
                             </p>
-                            <img src="public/img/<?= $items['image-coment'] ?>" class="testimonial-img" alt="">
+                            <img src="public/servi/<?= $items['image-coment'] ?>" class="testimonial-img" alt="">
                             <h3><?= $items['name'] ?></h3>
                             <h4><?= $items['status'] ?></h4>
                         </div>
