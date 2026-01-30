@@ -47,12 +47,13 @@ $row  = mysqli_fetch_assoc($data);
 //rumus 3 kategori
 
 // Tentukan kategori berdasarkan ID sesuai data di SQL Anda
-$isHeader      = ($row['id'] == 1); 
+$isHeader      = ($row['id'] == 1);
 $isContent     = ($row['id'] >= 2 && $row['id'] <= 7);
 $isTestimonial = ($row['id'] > 7);
 
 // Fungsi pembantu agar kode HTML lebih bersih
-function setStatus($condition) {
+function setStatus($condition)
+{
     return $condition ? '' : 'disabled style="background-color: #e9ecef; cursor: not-allowed;"';
 }
 
@@ -72,72 +73,78 @@ $name   = $_POST['name'] ?? $row['name'];
         <div class="row">
             <div class="col-md-12">
                 <form method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="<?= $row['id']; ?>">
+                    <input type="hidden" name="id" value="<?= $row['id']; ?>">
 
-    <div class="row">
-        <div class="col-md-4">
-            <h5 class="fw-bold">Kategori 1: Header</h5>
-            <div class="form-group">
-                <label>Title-1</label>
-                <input type="text" name="title-1" class="form-control" 
-                       value="<?= htmlspecialchars($row['title-1'] ?? ''); ?>" <?= setStatus($isHeader) ?>>
-            </div>
-            <div class="form-group">
-                <label>Desc Title-1</label>
-                <textarea name="desctitle-1" class="form-control" <?= setStatus($isHeader) ?>><?= htmlspecialchars($row['desctitle-1'] ?? ''); ?></textarea>
-            </div>
-            <div class="form-group">
-                <label>Title-2</label>
-                <input type="text" name="title-2" class="form-control" 
-                       value="<?= htmlspecialchars($row['title-2'] ?? ''); ?>" <?= setStatus($isHeader) ?>>
-            </div>
-        </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5 class="fw-bold">Kategori 1: Header</h5>
+                            <div class="form-group">
+                                <label>Title-1</label>
+                                <input type="text" name="title-1" class="form-control"
+                                    value="<?= htmlspecialchars($row['title-1'] ?? ''); ?>" <?= setStatus($isHeader) ?>>
+                            </div>
+                            <div class="form-group">
+                                <label>Desc Title-1</label>
+                                <textarea name="desctitle-1" class="form-control" <?= setStatus($isHeader) ?>><?= htmlspecialchars($row['desctitle-1'] ?? ''); ?></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Title-2</label>
+                                <input type="text" name="title-2" class="form-control"
+                                    value="<?= htmlspecialchars($row['title-2'] ?? ''); ?>" <?= setStatus($isHeader) ?>>
+                            </div>
+                        </div>
 
-        <div class="col-md-4">
-            <h5 class="fw-bold">Kategori 2: Service Content</h5>
-            <div class="form-group">
-                <label>Icon Class</label>
-                <input type="text" name="icon" class="form-control" 
-                       value="<?= htmlspecialchars($row['icon'] ?? ''); ?>" <?= setStatus($isContent) ?>>
-            </div>
-            <div class="form-group">
-                <label>Subtitle-1</label>
-                <input type="text" name="subtitle-1" class="form-control" 
-                       value="<?= htmlspecialchars($row['subtitle-1'] ?? ''); ?>" <?= setStatus($isContent) ?>>
-            </div>
-            <div class="form-group">
-                <label>Desc Subtitle-1</label>
-                <textarea name="descsubtitle-1" class="form-control" <?= setStatus($isContent) ?>><?= htmlspecialchars($row['descsubtitle-1'] ?? ''); ?></textarea>
-            </div>
-        </div>
+                        <div class="col-md-4">
+                            <h5 class="fw-bold">Kategori 2: Service Content</h5>
+                            <div class="form-group">
+                                <label>Icon Class</label>
+                                <input type="text" name="icon" class="form-control"
+                                    value="<?= htmlspecialchars($row['icon'] ?? ''); ?>" <?= setStatus($isContent) ?>>
+                            </div>
+                            <div class="form-group">
+                                <label>Subtitle-1</label>
+                                <input type="text" name="subtitle-1" class="form-control"
+                                    value="<?= htmlspecialchars($row['subtitle-1'] ?? ''); ?>" <?= setStatus($isContent) ?>>
+                            </div>
+                            <div class="form-group">
+                                <label>Desc Subtitle-1</label>
+                                <textarea name="descsubtitle-1" class="form-control" <?= setStatus($isContent) ?>><?= htmlspecialchars($row['descsubtitle-1'] ?? ''); ?></textarea>
+                            </div>
+                        </div>
 
-        <div class="col-md-4">
-            <h5 class="fw-bold">Kategori 3: Testimonials</h5>
-            <div class="form-group">
-                <label>Coment</label>
-                <textarea name="coment" class="form-control" <?= setStatus($isTestimonial) ?>><?= htmlspecialchars($row['coment'] ?? ''); ?></textarea>
-            </div>
-            <div class="form-group">
-                <label>Name</label>
-                <input type="text" name="name" class="form-control" 
-                       value="<?= htmlspecialchars($row['name'] ?? ''); ?>" <?= setStatus($isTestimonial) ?>>
-            </div>
-            <div class="form-group">
-                <label>Status/Job</label>
-                <input type="text" name="status" class="form-control" 
-                       value="<?= htmlspecialchars($row['status'] ?? ''); ?>" <?= setStatus($isTestimonial) ?>>
-            </div>
-            <div class="form-group">
-                <label>Image Coment</label>
-                <input type="file" name="image-coment" class="form-control" <?= setStatus($isTestimonial) ?>>
-            </div>
-        </div>
-    </div>
+                        <div class="col-md-4">
+                            <h5 class="fw-bold">Kategori 3: Testimonials</h5>
+                            <div class="form-group">
+                                <label>Coment</label>
+                                <textarea name="coment" class="form-control" <?= setStatus($isTestimonial) ?>><?= htmlspecialchars($row['coment'] ?? ''); ?></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" name="name" class="form-control"
+                                    value="<?= htmlspecialchars($row['name'] ?? ''); ?>" <?= setStatus($isTestimonial) ?>>
+                            </div>
+                            <div class="form-group">
+                                <label>Status/Job</label>
+                                <input type="text" name="status" class="form-control"
+                                    value="<?= htmlspecialchars($row['status'] ?? ''); ?>" <?= setStatus($isTestimonial) ?>>
+                            </div>
+                            <div class="form-group">
+                                <label>Image Coment</label>
+                                <input type="file" name="image-coment" class="form-control" <?= setStatus($isTestimonial) ?>>
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="card-footer text-end mt-3">
-        <button type="submit" name="update" class="btn btn-primary">Simpan Perubahan</button>
-    </div>
-</form>
+                    <div class="action-buttons">
+                        <a href="index.php?fitur=service" class="btn btn-danger me-2">
+                            <i class="fas fa-times"></i> Batal
+                        </a>
+
+                        <button type="submit" name="update" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Simpan Perubahan
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

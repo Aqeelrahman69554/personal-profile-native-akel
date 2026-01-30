@@ -115,7 +115,7 @@ $row  = mysqli_fetch_assoc($data);
                                 <button type="submit" name="update" class="btn btn-primary">
                                     <i class="fa fa-save"></i> Update
                                 </button>
-                                <a href="index.php?fitur=resume" class="btn btn-danger">
+                                <a href="index.php?fitur=skill" class="btn btn-danger">
                                     Batal
                                 </a>
                             </div>

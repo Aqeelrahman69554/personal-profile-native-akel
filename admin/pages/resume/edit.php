@@ -40,14 +40,28 @@ if (isset($_POST['update'])) {
             </script>";
         exit;
     } else {
-        echo "ID tidak ditemukan";
+        echo "GAGAL MENG-UPDATE DATA";
         exit;
     }
 }
+$id = $_GET['id'] ?? null;
+if(!$id){
+    echo "ID Tidak Ditemukan";
+    exit;
+}
 
+$isHeader = ($row['id']==1);
+$isContent = ($row['id']>=2);
+
+function setData($condition)
+{
+    return $condition ? '' : 'disabled style="background-color: #e9ecef; cursor: not-allowed;"';
+}
 
 $data = mysqli_query($conn, "SELECT * FROM resum WHERE id='$id'");
 $row  = mysqli_fetch_assoc($data);
+
+
 
 ?>
 
@@ -70,9 +84,7 @@ $row  = mysqli_fetch_assoc($data);
                         <div class="card-body">
                             <div class="row">
 
-                                <div class="col-md-6">
-
-
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Title Resume</label>
                                         <input type="text" name="resume"
@@ -80,7 +92,6 @@ $row  = mysqli_fetch_assoc($data);
                                             value="<?= htmlspecialchars($row['resume'] ?? ''); ?>"
                                             >
                                     </div>
-
                                     <div class="form-group">
                                         <label>Description Title Resume</label>
                                         <input type="text" name="descresume"
