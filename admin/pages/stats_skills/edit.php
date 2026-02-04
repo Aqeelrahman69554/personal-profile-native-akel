@@ -46,80 +46,68 @@ $row  = mysqli_fetch_assoc($data);
                 <form method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?= $row['id']; ?>">
 
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Update Data Resume</div>
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <div class="card-title text-white">Update Data Resume</div>
                         </div>
 
                         <div class="card-body">
                             <div class="row">
-
-                                <div class="col-md-6">
-
-
-                                    <div class="form-group">
-                                        <label>Title</label>
-                                        <input type="text" name="title"
-                                            class="form-control"
+                                <div class="col-md-6 border-end">
+                                    <div class="form-group mb-3">
+                                        <label class="fw-bold">Title</label>
+                                        <input type="text" name="title" class="form-control"
                                             value="<?= htmlspecialchars($row['title'] ?? ''); ?>">
                                     </div>
 
-                                    <div class="form-group">
-                                        <label>Skill Title</label>
-                                        <input type="text" name="description"
-                                            class="form-control"
+                                    <div class="form-group mb-3">
+                                        <label class="fw-bold">Skill Title</label>
+                                        <input type="text" name="skillTitle" class="form-control"
                                             value="<?= htmlspecialchars($row['skillTitle'] ?? ''); ?>">
                                     </div>
 
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <input type="text" name="description"
-                                            class="form-control"
-                                            value="<?= htmlspecialchars($row['description'] ?? ''); ?>">
+                                    <div class="form-group mb-3">
+                                        <label class="fw-bold">Description</label>
+                                        <textarea name="description" class="form-control" rows="4"><?= htmlspecialchars($row['description'] ?? ''); ?></textarea>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label>Percentage</label>
-                                        <input type="text" name="percentage"
-                                            class="form-control"
+                                    <div class="form-group mb-3">
+                                        <label class="fw-bold">Percentage</label>
+                                        <input type="text" name="percentage" class="form-control"
                                             value="<?= htmlspecialchars($row['percentage'] ?? ''); ?>">
                                     </div>
 
-                                    <div class="form-group">
-                                        <label>Icon</label>
-                                        <input type="text" name="icon"
-                                            class="form-control"
+                                    <div class="form-group mb-3">
+                                        <label class="fw-bold">Icon</label>
+                                        <input type="text" name="icon" class="form-control"
                                             value="<?= htmlspecialchars($row['icon'] ?? ''); ?>">
                                     </div>
                                 </div>
 
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Icon Number</label>
-                                        <input type="text" name="iconNumber"
-                                            class="form-control"
+                                <div class="col-md-6 bg-light p-3">
+                                    <div class="form-group mb-3">
+                                        <label class="fw-bold">Icon Number</label>
+                                        <input type="text" name="iconNumber" class="form-control"
                                             value="<?= htmlspecialchars($row['iconNumber'] ?? ''); ?>">
                                     </div>
 
-                                    <div class="form-group">
-                                        <label>Icon Description</label>
-                                        <input type="text" name="iconDescription"
-                                            class="form-control"
-                                            value="<?= htmlspecialchars($row['iconDescription'] ?? ''); ?>">
+                                    <div class="form-group mb-3">
+                                        <label class="fw-bold">Icon Description</label>
+                                        <textarea name="iconDescription" class="form-control" rows="4"><?= htmlspecialchars($row['iconDescription'] ?? ''); ?></textarea>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="card-footer text-end">
-                                <button type="submit" name="update" class="btn btn-primary">
-                                    <i class="fa fa-save"></i> Update
-                                </button>
-                                <a href="index.php?fitur=skill" class="btn btn-danger">
-                                    Batal
-                                </a>
-                            </div>
                         </div>
+
+                        <div class="card-footer bg-white border-top text-end">
+                            <a href="index.php?fitur=skill" class="btn btn-outline-danger me-2">
+                                <i class="fa fa-times me-1"></i> Batal
+                            </a>
+                            <button type="submit" name="update" class="btn btn-primary px-4">
+                                <i class="fa fa-save me-1"></i> Update Data
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

@@ -48,58 +48,72 @@ $row  = mysqli_fetch_assoc($data);
                 <form method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?= $row['id']; ?>">
 
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Update Data Home</div>
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <div class="card-title text-white">Update Data Home</div>
                         </div>
 
                         <div class="card-body">
                             <div class="row">
+                                <div class="col-lg-8 border-end">
+                                    <h5 class="text-primary mb-3 fw-bold">
+                                        <i class="fas fa-home me-2"></i> Informasi Utama
+                                    </h5>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-12 form-group mb-3">
+                                            <label class="fw-bold">Title</label>
+                                            <input type="text" name="title"
+                                                class="form-control"
+                                                value="<?= htmlspecialchars($row['title']); ?>"
+                                                required>
+                                        </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Title</label>
-                                        <input type="text" name="title"
-                                            class="form-control"
-                                            value="<?= htmlspecialchars($row['title']); ?>"
-                                            required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Job</label>
-                                        <input type="text" name="job"
-                                            class="form-control"
-                                            value="<?= htmlspecialchars($row['job']); ?>"
-                                            required>
+                                        <div class="col-md-12 form-group mb-3">
+                                            <label class="fw-bold">Job</label>
+                                            <input type="text" name="job"
+                                                class="form-control"
+                                                value="<?= htmlspecialchars($row['job']); ?>"
+                                                required>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Image</label>
-                                        <input type="file" name="image" class="form-control">
+                                <div class="col-lg-4 bg-light p-3">
+                                    <h5 class="text-primary mb-3 fw-bold">
+                                        <i class="fas fa-image me-2"></i> Media Visual
+                                    </h5>
+                                    <div class="alert alert-info py-2 mb-3" style="font-size: 0.85rem;">
+                                        <i class="fas fa-info-circle"></i> Gunakan gambar dengan resolusi yang baik untuk tampilan maksimal.
+                                    </div>
 
+                                    <div class="form-group mb-3">
+                                        <label class="fw-bold">Image Profile</label>
+                                        <input type="file" name="image" class="form-control shadow-sm">
+                                        
                                         <?php if (!empty($row['image'])) : ?>
-                                            <small class="text-muted d-block mt-2">
-                                                Current Image
-                                            </small>
-                                            <img src="../../../uploads/<?= $row['image']; ?>"
-                                                width="120"
-                                                class="rounded mt-1">
+                                            <div class="mt-3 text-center">
+                                                <small class="text-muted d-block mb-2">Current Image</small>
+                                                <img src="../../../uploads/<?= $row['image']; ?>"
+                                                    width="150"
+                                                    class="rounded shadow-sm border">
+                                                <div class="mt-1">
+                                                    <small class="text-primary fw-bold"><?= $row['image']; ?></small>
+                                                </div>
+                                            </div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
-                        <div class="card-footer text-end">
-                            <button type="submit" name="update" class="btn btn-primary">
-                                <i class="fa fa-save"></i> Update
-                            </button>
-                            <a href="index.php?fitur=home" class="btn btn-danger">
-                                Batal
+                        <div class="card-footer bg-white border-top text-end">
+                            <a href="index.php?fitur=home" class="btn btn-outline-danger me-2">
+                                <i class="fas fa-times me-1"></i> Batal
                             </a>
+                            <button type="submit" name="update" class="btn btn-primary px-4">
+                                <i class="fas fa-save me-1"></i> Simpan Perubahan
+                            </button>
                         </div>
                     </div>
                 </form>

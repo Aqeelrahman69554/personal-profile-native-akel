@@ -147,7 +147,7 @@ if (isset($_POST['update'])) {
                                                 </div>
                                                 <div class="form-group p-1">
                                                     <label>Description Subtitle-1</label>
-                                                    <input type="text" name="descsubtitle-1" class="form-control form-control-sm" value="<?= htmlspecialchars($row['descsubtitle-1'] ?? ''); ?>" <?= setData($isHeader) ?>>
+                                                    <textarea name="descsubtitle-1" style="text-align: justify;" class="form-control form-control-sm" rows="10" <?= setData($isHeader) ?>><?= htmlspecialchars($row['descsubtitle-1'] ?? ''); ?></textarea>
                                                 </div>
                                             </div>
 
@@ -167,7 +167,7 @@ if (isset($_POST['update'])) {
                                                 </div>
                                                 <div class="form-group p-1">
                                                     <label>Description Subtitle-2</label>
-                                                    <input type="text" name="descsubtitle-2" class="form-control form-control-sm" value="<?= htmlspecialchars($row['descsubtitle-2'] ?? ''); ?>" <?= setData($isHeader) ?>>
+                                                    <textarea name="descsubtitle-2" style="text-align: justify;" class="form-control form-control-sm" rows="10" <?= setData($isHeader) ?>><?= htmlspecialchars($row['descsubtitle-2'] ?? ''); ?></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -189,7 +189,7 @@ if (isset($_POST['update'])) {
                                                 </div>
                                                 <div class="form-group p-1">
                                                     <label>Description Subtitle-3</label>
-                                                    <input type="text" name="descsubtitle-3" class="form-control form-control-sm" value="<?= htmlspecialchars($row['descsubtitle-3'] ?? ''); ?>" <?= setData($isHeader) ?>>
+                                                    <textarea name="descsubtitle-3" style="text-align: justify;" class="form-control form-control-sm" rows="10" <?= setData($isHeader) ?>><?= htmlspecialchars($row['descsubtitle-3'] ?? ''); ?></textarea>
                                                 </div>
                                             </div>
 
@@ -205,7 +205,7 @@ if (isset($_POST['update'])) {
                                                 </div>
                                                 <div class="form-group p-1">
                                                     <label>Description Subtitle-4</label>
-                                                    <input type="text" name="descsubtitle-4" class="form-control form-control-sm" value="<?= htmlspecialchars($row['descsubtitle-4'] ?? ''); ?>" <?= setData($isHeader) ?>>
+                                                    <textarea name="descsubtitle-4" style="text-align: justify;" class="form-control form-control-sm" rows="10" <?= setData($isHeader) ?>><?= htmlspecialchars($row['descsubtitle-4'] ?? ''); ?></textarea>
                                                 </div>
                                             </div>
                                         </div>
